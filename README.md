@@ -2,6 +2,8 @@
 
 From the main directory.
 
+This will run with Python 3.8
+
 Run:
 python game_of_dice_cli.py 5 20
 

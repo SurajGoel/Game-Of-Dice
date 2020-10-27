@@ -7,29 +7,30 @@ class RandomAndPenaltyStrategy(roll_dice_strategy.RollDiceStrategy):
 
     def __init__(self):
         super(roll_dice_strategy.RollDiceStrategy, self).__init__()
+        self.last_dice_roll = {}
 
 
-    def get_dice_roll(self):
+    def get_dice_roll(self, player_id):
 
         self.__get_dice_roll_input()
 
         roll = randrange(1,7)
-        if roll == 6:
-            ScreenPrinter.roll_again()
-        else:
-            ScreenPrinter.you_rolled(roll)
-            return roll
+        result_roll = roll
 
-        self.__get_dice_roll_input()
-
-        next_roll = randrange(1,7)
-        if next_roll == 6:
+        if roll == 1 and player_id in self.last_dice_roll and self.last_dice_roll[player_id] == 1:
             ScreenPrinter.penalise()
             return 0
-        else:
-            ScreenPrinter.you_rolled(next_roll)
 
-        return roll + next_roll
+        while roll == 6:
+            ScreenPrinter.roll_again()
+            self.__get_dice_roll_input()
+            roll = randrange(1,7)
+            result_roll += roll
+
+        ScreenPrinter.you_rolled(roll)
+
+        self.last_dice_roll[player_id] = result_roll
+        return result_roll
 
     def __get_dice_roll_input(self):
         val = 0

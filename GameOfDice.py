@@ -62,7 +62,7 @@ class GameOfDice:
             ScreenPrinter.game_completed()
 
     def roll_dice(self):
-        get_dice_role = self.dice_roll_strategy.get_dice_roll()
+        get_dice_role = self.dice_roll_strategy.get_dice_roll(self.game_state.get_current_player_id())
         return get_dice_role
 
     def show_score_board(self):

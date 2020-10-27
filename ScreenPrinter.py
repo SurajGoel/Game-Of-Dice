@@ -38,7 +38,7 @@ class ScreenPrinter:
 
     @classmethod
     def penalise(cls):
-        print("Again 6, you will be penalised !")
+        print("You rolled 1 again, you will be penalised !")
 
     @classmethod
     def print_completed_player_rank(cls,player_id, rank):
